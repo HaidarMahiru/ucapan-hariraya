@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>    
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Untuk Wanita Tercantik</title>    
+    <style>    
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');  
+        
+        body {    
+            margin: 0;    
+            padding: 0;    
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 100%);    
+            overflow: hidden;    
+            font-family: 'Poppins', sans-serif;    
+            display: flex;    
+            justify-content: center;    
+            align-items: center;    
+            min-height: 100vh;    
+            color: white;    
+            perspective: 1000px;    
+        }    
+        
+        .container {    
+            text-align: center;    
+            position: relative;    
+            z-index: 10;    
+            width: 90%;    
+            max-width: 800px;    
+            transform-style: preserve-3d;    
+        }    
+        
+        .typing-container {    
+            background: rgba(10, 10, 42, 0.7);    
+            backdrop-filter: blur(10px);    
+            padding: 40px;    
+            border-radius: 20px;    
+            box-shadow: 0 10px 30px rgba(241, 196, 15, 0.2),    
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);    
+            margin-bottom: 40px;    
+            border: 1px solid rgba(255, 255, 255, 0.1);    
+            transform: translateZ(20px);    
+            transition: all 0.5s ease-out;    
+        }    
+        
+        .typing-container:hover {    
+            transform: translateZ(30px) rotateY(5deg);    
+            box-shadow: 0 15px 40px rgba(241, 196, 15, 0.3);    
+        }    
+        
+        .typing-text {    
+            font-size: 2rem;    
+            line-height: 1.8;    
+            min-height: 300px;    
+            text-align: center;    
+            position: relative;    
+            font-weight: 300;    
+        }    
+        
+        .typing-text .highlight {    
+            color: #f1c40f;    
+            font-family: 'Dancing Script', cursive;    
+            font-size: 2.2rem;    
+            font-weight: 700;    
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);    
+        }    
+        
+        .typing-text .cursor {    
+            display: inline-block;    
+            width: 8px;    
+            height: 2.2rem;    
+            background: linear-gradient(to bottom, #f1c40f, #f39c12);    
+            border-radius: 2px;    
+            animation: blink 0.8s infinite, pulse 1.5s infinite;    
+            margin-left: 5px;    
+            vertical-align: middle;    
+            transform: translateY(-2px);    
+        }    
+        
+        @keyframes blink {    
+            0%, 100% { opacity: 1; }    
+            50% { opacity: 0.3; }    
+        }    
+        
+        @keyframes pulse {    
+            0%, 100% { transform: translateY(-2px) scale(1); }    
+            50% { transform: translateY(-2px) scale(1.1); }    
+        }    
+        
+        .subtext {    
+            color: #2ecc71;    
+            font-size: 1.8rem;    
+            margin-top: 40px;    
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);    
+            font-family: 'Dancing Script', cursive;    
+            opacity: 0;    
+            transform: translateY(20px);    
+            transition: all 1s ease-out 2s;    
+        }    
+        
+        .show-subtext {    
+            opacity: 1;    
+            transform: translateY(0);    
+        }    
+        
+        /* Firework Styles */    
+        .firework {    
+            position: absolute;    
+            width: 5px;    
+            height: 5px;    
+            border-radius: 50%;    
+            box-shadow: 0 0 10px 5px;    
+            animation: explode 1.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;    
+            opacity: 0;    
+            transform: translateZ(0);    
+        }    
+        
+        @keyframes explode {    
+            0% {    
+                transform: translate(0, 0) scale(1);    
+                width: 5px;    
+                height: 5px;    
+                opacity: 1;    
+            }    
+            100% {    
+                transform: translate(var(--tx), var(--ty)) scale(0);    
+                opacity: 0;    
+            }    
+        }    
+        
+        .moon {    
+            position: absolute;    
+            top: 5%;    
+            right: 10%;    
+            width: 100px;    
+            height: 100px;    
+            background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12);    
+            border-radius: 50%;    
+            box-shadow: 0 0 50px rgba(243, 156, 18, 0.6);    
+            animation: float 8s ease-in-out infinite;    
+        }    
+        
+        .moon::before {    
+            content: '';    
+            position: absolute;    
+            top: 20px;    
+            left: 20px;    
+            width: 80px;    
+            height: 80px;    
+            background: #0a0a2a;    
+            border-radius: 50%;    
+        }    
+        
+        @keyframes float {    
+            0%, 100% { transform: translateY(0) rotate(0deg); }    
+            50% { transform: translateY(-20px) rotate(5deg); }    
+        }    
+        
+        .stars {    
+            position: absolute;    
+            top: 0;    
+            left: 0;    
+            width: 100%;    
+            height: 100%;    
+            pointer-events: none;    
+            overflow: hidden;    
+        }    
+        
+        .star {    
+            position: absolute;    
+            background: white;    
+            border-radius: 50%;    
+            animation: twinkle var(--duration) infinite ease-in-out;    
+            will-change: transform, opacity;    
+            transform: translateZ(0);    
+        }    
+        
+        @keyframes twinkle {    
+            0%, 100% {     
+                opacity: 0.3;     
+                transform: scale(0.8) rotate(0deg);    
+            }    
+            50% {     
+                opacity: 1;     
+                transform: scale(1.2) rotate(5deg);    
+            }    
+        }    
+        
+        .hearts {    
+            position: absolute;    
+            font-size: 24px;    
+            color: #e74c3c;    
+            animation: float-up 6s ease-in-out infinite;    
+            opacity: 0;    
+            z-index: 5;    
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.7);    
+            transform: translateZ(0);    
+        }    
+        
+        @keyframes float-up {    
+            0% {    
+                transform: translateY(0) rotate(0deg) scale(0.5);    
+                opacity: 0;    
+            }    
+            10% {    
+                opacity: 1;    
+            }    
+            90% {    
+                opacity: 1;    
+            }    
+            100% {    
+                transform: translateY(-100px) rotate(20deg) scale(1.2);    
+                opacity: 0;    
+            }    
+        }    
+        
+        .petal {    
+            position: absolute;    
+            width: 15px;    
+            height: 15px;    
+            background: radial-gradient(circle, #ff9ff3, #f368e0);    
+            border-radius: 50% 0 50% 50%;    
+            opacity: 0.8;    
+            animation: fall linear infinite;    
+            z-index: 5;    
+        }    
+        
+        @keyframes fall {    
+            0% {    
+                transform: translateY(-10vh) rotate(0deg);    
+                opacity: 0;    
+            }    
+            10% {    
+                opacity: 1;    
+            }    
+            90% {    
+                opacity: 1;    
+            }    
+            100% {    
+                transform: translateY(100vh) rotate(360deg);    
+                opacity: 0;    
+            }    
+        }
+        
+        /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .music-player:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+        
+        .music-player i {
+            font-size: 24px;
+        }
+    </style>
+    <!-- Font Awesome for music icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>    
+<body>    
+    <!-- Audio Element (hidden) -->
+    <audio id="background-music" loop>
+        <source src="https://files.catbox.moe/s30u59.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Music Player Button -->
+    <div class="music-player" id="music-control" title="Play/Pause Music">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <div class="moon"></div>    
+    <div class="stars" id="stars"></div>    
+    <div class="container">    
+        <div class="typing-container">    
+            <div class="typing-text" id="typing-text"></div>    
+        </div>    
+        <p class="subtext" id="subtext">Selamat Hari Raya Idul Fitri 1445 H</p>    
+    </div>  
+    
+    <script>    
+        // Smooth stars creation    
+        const starsContainer = document.getElementById('stars');    
+        const starCount = 200;    
+        
+        for (let i = 0; i < starCount; i++) {    
+            const star = document.createElement('div');    
+            star.className = 'star';    
+            
+            // Random size between 1-3px    
+            const size = 0.5 + Math.random() * 2.5;    
+            star.style.width = `${size}px`;    
+            star.style.height = `${size}px`;    
+            
+            // Random position    
+            star.style.left = `${Math.random() * 100}%`;    
+            star.style.top = `${Math.random() * 100}%`;    
+            
+            // Random animation    
+            const duration = 4 + Math.random() * 6;    
+            const delay = Math.random() * 10;    
+            star.style.setProperty('--duration', `${duration}s`);    
+            star.style.animationDelay = `${delay}s`;    
+            
+            // Random twinkle effect    
+            star.style.filter = `brightness(${0.7 + Math.random() * 0.6})`;    
+            
+            starsContainer.appendChild(star);    
+        }    
+        
+        // Enhanced typing animation    
+        const fullMessage = [    
+            "<span class='highlight'>Minal aidzin wal faidzin</span>",    
+            "<span class='highlight'>Mohon maaf lahir dan batin",    
+            "<span class='highlight'>Untuk wanita tercantik di hidupku",    
+            "<span class='highlight'>Selamat hari raya Idul Fitri yaa",    
+            "<span class='highlight'>Maafkan aku untuk semua salah",    
+            "<span class='highlight'>Dan semua kata yang menyakiti hatimu",    
+            "<span class='highlight'>Di tahun yang sudah kita lalui bersama",    
+            "<span class='highlight'>Semoga di tahun ini kita bisa bersama"    
+        ];    
+        
+        const typingText = document.getElementById('typing-text');    
+        const subtext = document.getElementById('subtext');    
+        let currentLine = 0;    
+        let currentText = '';    
+        let isDeleting = false;    
+        let isPausing = false;    
+        let typingSpeed = 90;    
+        let deleteSpeed = 40;    
+        let pauseTime = 1500;    
+        
+        function typeWriter() {    
+            if (currentLine >= fullMessage.length) {    
+                // Show final subtext when all messages are typed    
+                subtext.classList.add('show-subtext');    
+                return;    
+            }    
+        
+            const message = fullMessage[currentLine];    
+                
+            if (isDeleting) {    
+                // Deleting text    
+                currentText = message.substring(0, currentText.length - 1);    
+                typingText.innerHTML = currentText + '<span class="cursor"></span>';    
+                    
+                if (currentText === '') {    
+                    isDeleting = false;    
+                    currentLine = (currentLine + 1) % fullMessage.length;    
+                    setTimeout(typeWriter, 300);    
+                } else {    
+                    setTimeout(typeWriter, deleteSpeed + Math.random() * 30);    
+                }    
+            } else {    
+                // Typing text    
+                currentText = message.substring(0, currentText.length + 1);    
+                typingText.innerHTML = currentText + '<span class="cursor"></span>';    
+                    
+                if (currentText === message) {    
+                    if (!isPausing) {    
+                        isPausing = true;    
+                        setTimeout(() => {    
+                            isPausing = false;    
+                            isDeleting = true;    
+                            typeWriter();    
+                        }, pauseTime);    
+                    }    
+                } else {    
+                    // Vary typing speed for more natural feel    
+                    const speedVariation = Math.random() * 50;    
+                    setTimeout(typeWriter, typingSpeed + speedVariation);    
+                }    
+            }    
+        }    
+        
+        // Start typing after slight delay    
+        setTimeout(typeWriter, 1000);    
+        
+        // Create floating hearts    
+        function createHeart() {    
+            const heart = document.createElement('div');    
+            heart.className = 'hearts';    
+            heart.innerHTML = '❤';    
+            heart.style.left = `${5 + Math.random() * 90}%`;    
+            heart.style.bottom = '0';    
+            heart.style.fontSize = `${20 + Math.random() * 20}px`;    
+            heart.style.animationDuration = `${4 + Math.random() * 5}s`;    
+            document.body.appendChild(heart);    
+                
+            setTimeout(() => {    
+                heart.remove();    
+            }, 6000);    
+        }    
+        
+        // Create falling petals    
+        function createPetal() {    
+            const petal = document.createElement('div');    
+            petal.className = 'petal';    
+            petal.style.left = `${Math.random() * 100}%`;    
+            petal.style.width = `${10 + Math.random() * 15}px`;    
+            petal.style.height = petal.style.width;    
+            petal.style.animationDuration = `${5 + Math.random() * 10}s`;    
+            petal.style.opacity = `${0.5 + Math.random() * 0.5}`;    
+            document.body.appendChild(petal);    
+                
+            setTimeout(() => {    
+                petal.remove();    
+            }, 15000);    
+        }    
+        
+        // Start animations    
+        setInterval(createHeart, 1000);    
+        setInterval(createPetal, 500);    
+        
+        // Enhanced fireworks    
+        function createFirework() {    
+            const colors = [    
+                '#f1c40f', '#e74c3c', '#2ecc71',     
+                '#3498db', '#9b59b6', '#f39c12',    
+                '#e84393', '#00cec9'    
+            ];    
+            const color = colors[Math.floor(Math.random() * colors.length)];    
+                
+            const x = Math.random() * window.innerWidth;    
+            const y = Math.random() * window.innerHeight * 0.6;    
+            const particleCount = 70 + Math.floor(Math.random() * 50);    
+                
+            for (let i = 0; i < particleCount; i++) {    
+                const particle = document.createElement('div');    
+                particle.className = 'firework';    
+                particle.style.left = `${x}px`;    
+                particle.style.top = `${y}px`;    
+                particle.style.backgroundColor = color;    
+                    
+                const angle = Math.random() * Math.PI * 2;    
+                const distance = 30 + Math.random() * 120;    
+                const tx = Math.cos(angle) * distance;    
+                const ty = Math.sin(angle) * distance;    
+                    
+                particle.style.setProperty('--tx', `${tx}px`);    
+                particle.style.setProperty('--ty', `${ty}px`);    
+                particle.style.animationDelay = `${Math.random() * 0.3}s`;    
+                particle.style.width = `${3 + Math.random() * 4}px`;    
+                particle.style.height = particle.style.width;    
+                    
+                // Add slight color variation    
+                if (Math.random() > 0.7) {    
+                    particle.style.filter = `brightness(${1.1 + Math.random() * 0.3})`;    
+                }    
+                    
+                document.body.appendChild(particle);    
+                    
+                setTimeout(() => {    
+                    particle.remove();    
+                }, 1800);    
+            }    
+        }    
+        
+        // Create fireworks periodically with random timing    
+        function scheduleFirework() {    
+            const delay = 800 + Math.random() * 1200;    
+            setTimeout(() => {    
+                createFirework();    
+                scheduleFirework();    
+            }, delay);    
+        }    
+        
+        // Start fireworks    
+        scheduleFirework();    
+        createFirework();    
+        
+        // Interactive fireworks on click    
+        document.addEventListener('click', (e) => {    
+            for (let i = 0; i < 5; i++) {    
+                setTimeout(() => {    
+                    createFirework();    
+                }, i * 200);    
+            }    
+        });
+        
+        // Music Control
+        const backgroundMusic = document.getElementById('background-music');
+        const musicControl = document.getElementById('music-control');
+        let isPlaying = false;
+        
+        // Autoplay music (with user interaction)
+        document.addEventListener('click', function() {
+            if (!isPlaying) {
+                backgroundMusic.play()
+                    .then(() => {
+                        isPlaying = true;
+                        musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                    })
+                    .catch(error => {
+                        console.log('Autoplay prevented:', error);
+                    });
+            }
+        }, { once: true });
+        
+        // Toggle play/pause on button click
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                backgroundMusic.play();
+                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>  
+</body>    
+</html>
